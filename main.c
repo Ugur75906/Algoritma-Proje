@@ -5,7 +5,7 @@
 typedef struct {
     char masa[10], icecek[10], sayi[30];
 } Siparis;
-
+//girilen icecegin en cok soylendigi siparisi geri donduren fonksiyon
 Siparis siparisAdet(char *icecekisim);
 
 int main() {
@@ -14,11 +14,12 @@ int main() {
     scanf("%9s", girick);
 
     for (int i = 0; girick[i]; i++) girick[i] = toupper(girick[i]);
+    //burdaki amaç kucuk harfleri buyuk harflere cevirmek
 
     Siparis sonuc = siparisAdet(girick);
 
     if (strcmp(sonuc.masa, "YOK") != 0) {
-        printf("En fazla %s icen : %s (%zu)\n", 
+        printf("En fazla %s icen : %s (%zu)\n",
                 sonuc.icecek, sonuc.masa, strlen(sonuc.sayi));
     }
 
@@ -29,7 +30,6 @@ Siparis siparisAdet(char *icecekisim) {
     FILE *file = fopen("Siparis.txt", "r");
     Siparis mevcut, enIyisi = {"YOK", "YOK", "YOK"};
     int bulundu = 0;
-
     if (file == NULL) {
         printf("Dosya acilamadi...\n");
         return enIyisi;
@@ -43,11 +43,13 @@ Siparis siparisAdet(char *icecekisim) {
             }
         }
     }
+    //dosyayı kapattık
     fclose(file);
-
+    //siparis bulunmadiginda bu calısacak
     if (!bulundu) {
         printf("\nBu icecek tuketilmemistir...\n");
         strcpy(enIyisi.masa, "YOK");
+        //burda "YOK" yazisini enIyisi.masaya kopyaladik;
     }
     return enIyisi;
 }
