@@ -28,7 +28,7 @@ int main() {
 
 Siparis siparisAdet(char *icecekisim) {
     FILE *file = fopen("Siparis.txt", "r");
-    Siparis mevcut, enIyisi = {"YOK", "YOK", "YOK"};
+    Siparis mevcut, enIyisi = {"YOK", "YOK", " "};
     int bulundu = 0;
     if (file == NULL) {
         printf("Dosya acilamadi...\n");
@@ -37,7 +37,7 @@ Siparis siparisAdet(char *icecekisim) {
 
     while (fscanf(file, "%s %s %s", mevcut.masa, mevcut.icecek, mevcut.sayi) == 3) {
         if (strcmp(icecekisim, mevcut.icecek) == 0) {
-            if (!bulundu || strlen(mevcut.sayi) > strlen(enIyisi.sayi)) {
+            if (strlen(mevcut.sayi) > strlen(enIyisi.sayi)) {
                 enIyisi = mevcut;
                 bulundu = 1;
             }
